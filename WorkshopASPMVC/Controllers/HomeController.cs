@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WorkshopASPMVC.Models;
+using WorkshopASPMVC.Models.ViewModels;
 
 namespace WorkshopASPMVC.Controllers
 {
