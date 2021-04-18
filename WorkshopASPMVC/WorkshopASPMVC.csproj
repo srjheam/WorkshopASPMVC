@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210418001224_Add Seller and SalesRecord.cs" />
+    <Compile Remove="Migrations\20210418001224_Add Seller and SalesRecord.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.14">
       <PrivateAssets>all</PrivateAssets>

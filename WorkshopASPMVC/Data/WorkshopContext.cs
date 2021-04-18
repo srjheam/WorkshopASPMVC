@@ -11,5 +11,7 @@ namespace WorkshopASPMVC.Data
         }
 
         public DbSet<Department> Department { get; set; }
+        public Seller Seller { get; set; }
+        public SalesRecord SalesRecord { get; set; }
     }
 }
