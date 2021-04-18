@@ -43,10 +43,15 @@ namespace WorkshopASPMVC.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("SalesRecord");
                 });
@@ -77,6 +82,13 @@ namespace WorkshopASPMVC.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Seller");
+                });
+
+            modelBuilder.Entity("WorkshopASPMVC.Models.SalesRecord", b =>
+                {
+                    b.HasOne("WorkshopASPMVC.Models.Seller", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId");
                 });
 
             modelBuilder.Entity("WorkshopASPMVC.Models.Seller", b =>

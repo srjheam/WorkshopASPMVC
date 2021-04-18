@@ -9,8 +9,8 @@ using WorkshopASPMVC.Data;
 namespace WorkshopASPMVC.Migrations
 {
     [DbContext(typeof(WorkshopContext))]
-    [Migration("20210418002721_FixMigration")]
-    partial class FixMigration
+    [Migration("20210418012438_AddSellerAndSalesRecord")]
+    partial class AddSellerAndSalesRecord
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,10 +45,15 @@ namespace WorkshopASPMVC.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("SalesRecord");
                 });
@@ -79,6 +84,13 @@ namespace WorkshopASPMVC.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Seller");
+                });
+
+            modelBuilder.Entity("WorkshopASPMVC.Models.SalesRecord", b =>
+                {
+                    b.HasOne("WorkshopASPMVC.Models.Seller", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId");
                 });
 
             modelBuilder.Entity("WorkshopASPMVC.Models.Seller", b =>
