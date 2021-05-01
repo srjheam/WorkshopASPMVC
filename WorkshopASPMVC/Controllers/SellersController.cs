@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WorkshopASPMVC.Models;
 using WorkshopASPMVC.Services;
 
 namespace WorkshopASPMVC.Controllers
@@ -16,6 +17,19 @@ namespace WorkshopASPMVC.Controllers
         {
             var list = _service.FindAll();
             return View(list);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Seller seller)
+        {
+            _service.Insert(seller);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
