@@ -28,6 +28,7 @@ namespace WorkshopASPMVC
                         builder.MigrationsAssembly("WorkshopASPMVC")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<DepartmentService>();
             services.AddScoped<SellerService>();
         }
 
