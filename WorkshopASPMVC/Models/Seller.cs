@@ -12,6 +12,7 @@ namespace WorkshopASPMVC.Models
         public double BaseSalary { get; set; }
         public DateTime BirthDate { get; set; }
         public Department Department { get; set; }
+        public int DepartmentId { get; set; }
         private ICollection<SalesRecord> Sales { get; set; } = new HashSet<SalesRecord>();
 
         public Seller()
