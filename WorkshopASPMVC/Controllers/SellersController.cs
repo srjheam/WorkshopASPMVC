@@ -2,6 +2,7 @@
 using WorkshopASPMVC.Models;
 using WorkshopASPMVC.Models.ViewModels;
 using WorkshopASPMVC.Services;
+using WorkshopASPMVC.Services.Exceptions;
 
 namespace WorkshopASPMVC.Controllers
 {
@@ -75,6 +76,47 @@ namespace WorkshopASPMVC.Controllers
             }
 
             return View(seller);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id is null)
+            {
+                return NotFound();
+            }
+
+            var seller = _sellerService.Find(id.Value);
+            if (seller is null)
+            {
+                return NotFound();
+            }
+
+            var departments = _departmentService.FindAll();
+            var sellerFormViewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+            return View(sellerFormViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Seller seller)
+        {
+            if (id != seller.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _sellerService.Update(seller);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
         }
     }
 }
