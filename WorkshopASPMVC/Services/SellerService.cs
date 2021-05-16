@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using WorkshopASPMVC.Data;
 using WorkshopASPMVC.Models;
@@ -24,7 +25,7 @@ namespace WorkshopASPMVC.Services
         }
 
         public Seller Find(int id) =>
-            _context.Seller.FirstOrDefault(x => x.Id == id);
+            _context.Seller.Include(x => x.Department).FirstOrDefault(x => x.Id == id);
 
         public void Remove(int id)
         {

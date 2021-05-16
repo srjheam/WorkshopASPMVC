@@ -60,5 +60,21 @@ namespace WorkshopASPMVC.Controllers
             _sellerService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Details(int? id)
+        {
+            if (id is null)
+            {
+                return NotFound();
+            }
+
+            var seller = _sellerService.Find(id.Value);
+            if (seller is null)
+            {
+                return NotFound();
+            }
+
+            return View(seller);
+        }
     }
 }
