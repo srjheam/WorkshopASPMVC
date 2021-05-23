@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WorkshopASPMVC.Data;
 using WorkshopASPMVC.Models;
 
@@ -14,7 +16,7 @@ namespace WorkshopASPMVC.Services
             _context = context;
         }
 
-        public List<Department> FindAll() =>
-            _context.Department.OrderBy(x => x.Name).ToList();
+        public async Task<List<Department>> FindAllAsync() =>
+            await _context.Department.OrderBy(x => x.Name).ToListAsync();
     }
 }
