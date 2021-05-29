@@ -24,13 +24,16 @@ namespace WorkshopASPMVC.Controllers
         {
             var result = await _salesRecordService.FindByDateAsync(minDate, maxDate);
             ViewData["minDate"] = (minDate ?? result.OrderBy(x => x.Date).FirstOrDefault().Date).ToString("yyyy-MM-dd");
-            ViewData["maxDate"] = (maxDate ?? result.OrderByDescending(x => x.Date).FirstOrDefault().Date).ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = (maxDate ?? DateTime.Now).ToString("yyyy-MM-dd");
             return View(result);
         }
 
-        public IActionResult GroupingSearch()
+        public async Task<IActionResult> GroupingSearch(DateTime? minDate, DateTime? maxDate)
         {
-            return View();
+            var result = await _salesRecordService.FindByDateGroupingAsync(minDate, maxDate);
+            ViewData["minDate"] = (minDate ?? result.SelectMany(groups => groups).OrderBy(x => x.Date).FirstOrDefault().Date).ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = (maxDate ?? DateTime.Now).ToString("yyyy-MM-dd");
+            return View(result);
         }
     }
 }

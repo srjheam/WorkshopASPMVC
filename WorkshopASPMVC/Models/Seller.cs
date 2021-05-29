@@ -31,7 +31,7 @@ namespace WorkshopASPMVC.Models
 
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
-        private ICollection<SalesRecord> Sales { get; set; } = new HashSet<SalesRecord>();
+        public ICollection<SalesRecord> Sales { get; set; } = new HashSet<SalesRecord>();
 
         public Seller()
         {

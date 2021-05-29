@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WorkshopASPMVC.Models.SalesRecord>
+﻿@model IEnumerable<SalesRecord>
 
 @{
     ViewData["Title"] = "Simple Search";
@@ -28,7 +28,7 @@
     <div class="card-header text-center">
         <b>Total sales = @Model.Sum(obj => obj.Amount).ToString("F2")</b>
     </div>
-    <div class="card-body">
+    <div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr class="table-success">
