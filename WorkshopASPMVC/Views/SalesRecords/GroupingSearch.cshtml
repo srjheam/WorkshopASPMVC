@@ -30,7 +30,7 @@
 {
     <div class="card">
         <div class="card-header text-center">
-            <b class="card-title">Department @departmentGroup.Key.Name, Total sales = @departmentGroup.Key.TotalSales(minDate, maxDate).ToString("F2")</b>
+            <b class="card-title">Department @departmentGroup.Key.Name</b>
         </div>
         <div>
             <table class="table table-striped table-hover">
@@ -70,6 +70,9 @@
                     }
                 </tbody>
             </table>
+        </div>
+        <div class="card-footer text-center">
+            Total sales = @departmentGroup.Key.TotalSales(minDate, maxDate).ToString("F2")
         </div>
     </div>
 }
