@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using WorkshopASPMVC.Models.Enums;
 
 namespace WorkshopASPMVC.Models
@@ -6,7 +7,11 @@ namespace WorkshopASPMVC.Models
     public class SalesRecord
     {
         public int Id { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Amount { get; set; }
         public SaleStatus Status { get; set; }
         public Seller Seller { get; set; }
